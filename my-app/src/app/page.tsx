@@ -26,12 +26,15 @@ export default function Home() {
     const formData = new FormData();
     formData.append("file", file);
 
-    const backendURL = "https://handy-sammy-cinnamonic.ngrok-free.dev"
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL;
 
     try {
-      const response = await fetch(`${backendURL}/process-image`, {
+      const response = await fetch(`${backendUrl}/process-image`, {
         method: "POST",
         body: formData,
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
       });
       const blob = await response.blob();
       setProcessedImage(URL.createObjectURL(blob));
