@@ -26,8 +26,10 @@ export default function Home() {
     const formData = new FormData();
     formData.append("file", file);
 
+    const backendURL = "https://handy-sammy-cinnamonic.ngrok-free.dev"
+
     try {
-      const response = await fetch("https://handy-sammy-cinnamonic.ngrok-free.dev/process-image", {
+      const response = await fetch(`${backendURL}/process-image`, {
         method: "POST",
         body: formData,
       });
